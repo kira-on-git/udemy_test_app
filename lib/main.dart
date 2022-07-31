@@ -35,23 +35,24 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('udemy_test_app'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Question(questions[_questionIndex]),
-              RaisedButton(onPressed: answerQuestion, child: Text('Answer 1')),
-              RaisedButton(
-                  onPressed: () => print('Answer 2 choosen!'),
-                  child: Text('Answer 2')),
-              RaisedButton(
-                  onPressed: () {
-                    //...
-                    print('Answer 3 choosen!');
-                  },
-                  child: Text('Answer 3')),
-            ],
-          ),
+        body: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Question(questions[_questionIndex]),
+            RaisedButton(
+              onPressed: answerQuestion,
+              child: Text('Answer 1'),
+            ),
+            RaisedButton(
+                onPressed: () => print('Answer 2 choosen!'),
+                child: Text('Answer 2')),
+            RaisedButton(
+                onPressed: () {
+                  //...
+                  print('Answer 3 choosen!');
+                },
+                child: Text('Answer 3')),
+          ],
         ),
       ),
     );
