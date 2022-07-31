@@ -6,16 +6,18 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   //const MyApp({Key? key}) : super(key: key);
+  var questionIndex = 0;
   void answerQuestion() {
-    print('Answer choosen!');
+    questionIndex = questionIndex + 1;
+    print(questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    /*var questions = [
+    var questions = [
       'What\'s your favorite color?',
-      'What\'s your favorite animarl?',
-    ];*/
+      'What\'s your favorite animal?',
+    ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text('The question!'),
+              Text(questions[questionIndex]),
               RaisedButton(onPressed: answerQuestion, child: Text('Answer 1')),
               RaisedButton(
                   onPressed: () => print('Answer 2 choosen!'),
