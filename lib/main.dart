@@ -13,12 +13,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //const MyApp({Key? key}) : super(key: key);
-  var questionIndex = 0;
+  var _questionIndex = 0;
 
   void answerQuestion() {
     setState(() {
-      questionIndex += 1;
-      print(questionIndex);
+      _questionIndex += 1;
+      print(_questionIndex);
     });
   }
 
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(questions[questionIndex]),
+              Text(questions[_questionIndex]),
               RaisedButton(onPressed: answerQuestion, child: Text('Answer 1')),
               RaisedButton(
                   onPressed: () => print('Answer 2 choosen!'),
