@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +39,7 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(questions[_questionIndex]),
+              Question(questions[_questionIndex]),
               RaisedButton(onPressed: answerQuestion, child: Text('Answer 1')),
               RaisedButton(
                   onPressed: () => print('Answer 2 choosen!'),
