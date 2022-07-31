@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*var questions = [
+      'What\'s your favorite color?',
+      'What\'s your favorite animarl?',
+    ];*/
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
