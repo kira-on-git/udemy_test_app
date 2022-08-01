@@ -22,15 +22,29 @@ class _MyAppState extends State<MyApp> {
   void _answerQuestion() {
     setState(() {
       _questionIndex += 1;
-      print(_questionIndex);
     });
+    print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s your favorite color?',
-      'What\'s your favorite animal?',
+      {
+        'questionText': 'What\'s your favorite color?',
+        'answers': ['blue', 'red', 'green', 'yellow']
+      },
+      {
+        'questionText': 'What\'s your favorite animal?',
+        'answers': ['pig', 'snake', 'lion', 'woolf']
+      },
+      {
+        'questionText': 'What\'s your favorite season?',
+        'answers': ['winter', 'summer', 'autumn', 'spring']
+      },
+      {
+        'questionText': 'What\'s your favorite time of day?',
+        'answers': ['morning', 'day', 'evening', 'night']
+      },
     ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -41,10 +55,11 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Question(questions[_questionIndex]),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            Question(questions[_questionIndex]['questionText'] as String),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList(),
           ],
         ),
       ),
