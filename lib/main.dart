@@ -17,6 +17,24 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //const MyApp({Key? key}) : super(key: key);
+  final questions = const [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['blue', 'red', 'green', 'yellow']
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['pig', 'snake', 'lion', 'woolf']
+    },
+    {
+      'questionText': 'What\'s your favorite season?',
+      'answers': ['winter', 'summer', 'autumn', 'spring']
+    },
+    {
+      'questionText': 'What\'s your favorite time of day?',
+      'answers': ['morning', 'day', 'evening', 'night']
+    },
+  ];
   var _questionIndex = 0;
 
   void _answerQuestion() {
@@ -24,44 +42,35 @@ class _MyAppState extends State<MyApp> {
       _questionIndex += 1;
     });
     print(_questionIndex);
+    if (_questionIndex < questions.length) {
+      print('We have more questions');
+    } else {
+      print('No more questions');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      {
-        'questionText': 'What\'s your favorite color?',
-        'answers': ['blue', 'red', 'green', 'yellow']
-      },
-      {
-        'questionText': 'What\'s your favorite animal?',
-        'answers': ['pig', 'snake', 'lion', 'woolf']
-      },
-      {
-        'questionText': 'What\'s your favorite season?',
-        'answers': ['winter', 'summer', 'autumn', 'spring']
-      },
-      {
-        'questionText': 'What\'s your favorite time of day?',
-        'answers': ['morning', 'day', 'evening', 'night']
-      },
-    ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('udemy_test_app'),
         ),
-        body: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Question(questions[_questionIndex]['questionText'] as String),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList(),
-          ],
-        ),
+        body: _questionIndex < questions.length
+            ? Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Question(questions[_questionIndex]['questionText'] as String),
+                  ...(questions[_questionIndex]['answers'] as List<String>)
+                      .map((answer) {
+                    return Answer(_answerQuestion, answer);
+                  }).toList(),
+                ],
+              )
+            : Center(
+                child: Text('You did it!'),
+              ),
       ),
     );
   }

@@ -10,7 +10,7 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //width: double.infinity,
-      margin: EdgeInsets.only(top: 6.0, bottom: 6.0),
+      margin: const EdgeInsets.only(top: 6.0, bottom: 6.0),
       // ignore: deprecated_member_use
       child: RaisedButton(
         color: Colors.lightBlue,
