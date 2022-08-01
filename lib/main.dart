@@ -1,8 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import 'package:udemy_test_app/quiz.dart';
+import './quiz.dart';
+import 'result.dart';
 
 void main() => runApp(const MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //const MyApp({Key? key}) : super(key: key);
-  final questions = const [
+  final _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
       'answers': ['blue', 'red', 'green', 'yellow']
@@ -42,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       _questionIndex += 1;
     });
     print(_questionIndex);
-    if (_questionIndex < questions.length) {
+    if (_questionIndex < _questions.length) {
       print('We have more questions');
     } else {
       print('No more questions');
@@ -57,20 +58,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('udemy_test_app'),
         ),
-        body: _questionIndex < questions.length
-            ? Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Question(questions[_questionIndex]['questionText'] as String),
-                  ...(questions[_questionIndex]['answers'] as List<String>)
-                      .map((answer) {
-                    return Answer(_answerQuestion, answer);
-                  }).toList(),
-                ],
-              )
-            : Center(
-                child: Text('You did it!'),
-              ),
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions)
+            : const Result(),
       ),
     );
   }
