@@ -3,10 +3,9 @@ import './question.dart';
 import './answer.dart';
 
 class Quiz extends StatelessWidget {
-  //const Quiz({Key? key}) : super(key: key);
   final List<Map<String, Object>> questions;
   final int questionIndex;
-  final VoidCallback answerQuestion;
+  final Function answerQuestion;
   Quiz(
       {required this.questions,
       required this.questionIndex,
@@ -16,10 +15,14 @@ class Quiz extends StatelessWidget {
     return Column(
       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Question(questions[questionIndex]['questionText'] as String),
-        ...(questions[questionIndex]['answers'] as List<String>).map((answer) {
-          return Answer(answerQuestion, answer);
-        }).toList(),
+        Question(
+          questions[questionIndex]['questionText'] as String,
+        ),
+        ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
+            .map((answer) {
+          return Answer(
+              () => answerQuestion(answer['score']), answer['text'] as String);
+        }).toList()
       ],
     );
   }
